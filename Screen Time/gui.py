@@ -3,8 +3,13 @@ import tkinter as tk
 from tkinter import messagebox
 import images_file as imf
 
+##################### -------------------------------------PARAMETERS----------------------#############
+
 # New User Information Submitted Flag
 new_info_sub: int = 0
+
+# New User Registration Tracker
+reg_tracker: int = 0
 
 ############### ---------------------------MESSAGES---------------------------------------------###############
 def existing_user_warning(name):
@@ -20,15 +25,6 @@ def ask_camera_source():
         return 0
     else:
         return 1
-
-def get_user_pp():
-    user_inp = messagebox.askyesno("User Readiness",
-                                   "Are you ready for taking the Profile Picture?")
-
-    if user_inp == 'yes':
-        return 1
-    else:
-        return 0
 
 ############# -----------------------------BUTTON COMMANDS---------------------------------------------- ###############
 def reg_submit():
@@ -129,17 +125,11 @@ def images_related_window():
 
     take_ml_images_btn = tk.Button(images_window,
                                    text=sp.read_config(ky='btn1_txt', sc='Images-Window'),
-                                   command=get_user_pp)
+                                   command=ml_pics.take_ml_images())
     take_ml_images_btn.grid(row=6, column=3)
+
 
     take_pp_image = tk.Button(images_window,
                                    text=sp.read_config(ky='btn2_txt', sc='Images-Window'),
-                                   command=get_user_pp)
+                                   command=ml_pics.take_pp())
     take_pp_image.grid(row=7, column=3)
-
-    user_pp_ready:int = get_user_pp()
-    if user_pp_ready == 1:
-        ml_pics.take_pp()
-    else:
-        # Remove the Named folders created during the user registration process
-        ...

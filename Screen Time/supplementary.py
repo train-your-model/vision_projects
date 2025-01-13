@@ -1,6 +1,7 @@
 import configparser
 import os.path
 import dir_paths as dp
+import tensorflow as tf
 
 def read_config(ky, sc):
     """
@@ -23,3 +24,8 @@ def remove_named_dirs(user_name):
     :param user_name: user_name given during the registration process
     """
     ...
+
+def load_image(raw_img):
+    byte_img = tf.io.read_file(raw_img)
+    img = tf.io.decode_image(byte_img)
+    return img
