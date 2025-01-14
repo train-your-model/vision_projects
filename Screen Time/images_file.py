@@ -23,7 +23,7 @@ class TakeImage:
     @number_of_images.deleter
     def number_of_images(self):
         print(f"The Number of images required has been restored to the default value of 10")
-        self.number_of_images = 10
+        self.number_of_images = 50
 
     def take_ml_images(self):
         cap = cv.VideoCapture(self.cam_type)
@@ -33,7 +33,7 @@ class TakeImage:
 
         label = self.user_name
         print(f"Collecting Images for {label}")
-        time.sleep(6)
+        time.sleep(2)
 
         for img_num in range(self.number_of_images):
             print(f"Collecting Image No. {img_num}")
@@ -41,7 +41,7 @@ class TakeImage:
             img_name = os.path.join(self.default_img_folder, label, label+'.'+'{}.jpg'.format(str(uuid.uuid1())))
             cv.imwrite(img_name, frame)
             cv.imshow('frame', frame)
-            time.sleep(3)
+            time.sleep(2)
 
             if cv.waitKey(1) & 0xFF == ord('q'):
                 break
